@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+
+@font-face {
+    font-family: 'han';
+    src:url('../public/fonts/HelveticaNeueRoman.otf') format('opentype');
+}
+
