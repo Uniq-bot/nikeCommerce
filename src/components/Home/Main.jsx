@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import Best from "../Section/MainSection/Best.jsx";
-import Trending from "../Section/MainSection/Trending.jsx";
+import Best from "../../Section/MainSection/Best.jsx";
+import Trending from "../../Section/MainSection/Trending.jsx";
 
 const Main = ({data}) => {
 

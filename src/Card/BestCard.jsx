@@ -2,10 +2,10 @@
 const BestCard = ({item, index}) => {
     return (
         <div key={index} className={'  flex flex-col items-center lg:w-1/4 w-1/2'}>
-            <div className={'w-full h-[90.5vh] lg:h-[300vh]  md:h-[150vh] relative overflow-hidden '}>
-                <img src={item.img} className={'w-full h-full  absolute    object-cover'} alt="" />
+            <div className={'w-full h-[90.5vh] lg:h-[300vh] md:h-[150vh] relative overflow-hidden '}>
+                <img src={item.image} className={'w-full h-full  absolute hover:scale-110 transition-all    object-cover'} alt="" />
                 <div className={`absolute ${index>0?('bg-sky-200 text-green-800'):('bg-white text-red-700')} lg:px-5 lg:text-[0.9em] text-[0.7em] px-3 top-2 left-2  rounded-full lg:top-3 lg:left-3 lg:py-1 `}>
-                    {item.recent}
+                    {item.label}
                 </div>
             </div>
             <div className={'w-full h-full flex  flex-col justify-between'}>
