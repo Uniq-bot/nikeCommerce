@@ -58,16 +58,16 @@ const ProductDetail = ({ data, fav, setFav, cart, setCart }) => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-8">
                         {/* Left Side - Product Images */}
                         <div className="space-y-4">
-                            <div className="bg-white rounded-lg p-8 shadow-sm">
+                            <div className="bg-white rounded-lg shadow-sm">
                                 <div className="relative aspect-square">
-                                    <div className="absolute top-4 left-4 bg-black text-white px-2 py-1 rounded text-sm flex items-center gap-1">
+                                    <div className="absolute top-4 left-4 bg-black text-white p-2  rounded text-sm flex items-center gap-1">
                                         <RiStarFill className="w-3 h-3" />
-                                        <span className="text-xs">Highly Rated</span>
+
                                     </div>
                                     <img
                                         src={state.image}
                                         alt={state.name}
-                                        className="w-full h-full object-contain"
+                                        className="w-full h-full object-cover"
                                     />
                                 </div>
                             </div>
@@ -184,7 +184,7 @@ const ProductDetail = ({ data, fav, setFav, cart, setCart }) => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                             {data
                                 .filter((item) => item.id !== state.id)
-                                .slice(0, 4)
+                                .slice(5, 9)
                                 .map((item) => (
                                     <ProductCard key={item.id} item={item} />
                                 ))

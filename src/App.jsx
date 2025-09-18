@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Home from "./pages/Home.jsx";
 import {BrowserRouter, Router, Route, Routes, useNavigate} from "react-router-dom";
@@ -7,6 +7,7 @@ import Navbar from "./Common/Navbar.jsx";
 import ProductSection from "./pages/ProductSection.jsx";
 import Footer from "./Common/Footer.jsx";
 import ProductDetail from "./pages/ProductDetail.jsx";
+import Cart from "./pages/Cart.jsx";
 const App = () => {
     const products = [
         {
@@ -160,7 +161,7 @@ const App = () => {
             for: "Kids",
         },
     ];
-    const [cartCount, setCartCount] = useState(2);
+    const [cartCount, setCartCount] = useState(0);
     const [cartItems, setCartItems] = useState(()=>{
         const saved=localStorage.getItem("cartItems");
         return saved?JSON.parse(saved):[];
@@ -170,6 +171,11 @@ const App = () => {
         return saved ? JSON.parse(saved) : [];
     });
     console.log(cartItems)
+    useEffect(() => {
+
+            setCartCount(cartItems.length)
+
+    }, [cartItems]);
 
     return (
       <BrowserRouter>
@@ -179,6 +185,7 @@ const App = () => {
             <Route  path="/"  element={<Home data={products} />} />
             <Route  path="/products/:name" element={<ProductSection data={products} />} />
             <Route path="/product/:id" element={<ProductDetail fav={favrouite} cart={cartItems} setCart={setCartItems} setFav={setFarouite} data={products}/>} />
+            <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
         </Routes>
           <Footer />
       </BrowserRouter>

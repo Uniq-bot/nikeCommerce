@@ -1,6 +1,8 @@
 import React from 'react'
+import {useNavigate} from "react-router-dom";
 
 const SubHero = () => {
+    const navigate=useNavigate();
     return (
         <section className="hero lg:px-15 px-5 font-[han]  md:h-100  h-50  lg:min-h-150 flex items-center  bg-cover bg-no-repeat   relative overflow-hidden">
             <div className="h-full w-2/3  flex flex-col justify-center  bg-cover">
@@ -10,7 +12,7 @@ const SubHero = () => {
                 </h1>
                 <h3 className={' leading-none text-gray-500 mt-2 md:text-[15px] lg:pr-50 lg:text-[19px] tracking-none text-[7px]'}>Take advantage of brand new, proprietary cushioning technology with a fresh pair of Nike react shoes.</h3>
                 <button className={' flex mt-2 md:mt-3 lg:mt-5  border-2 w-fit px-3 py-1 md:px-5 md:py-3 lg:px-7 lg:py-4 rounded-full bg-[#111] text-white'}>
-                    <p className={'text-[7px] md:text-[15px]'}>Shop Now</p>
+                    <p className={'text-[7px] md:text-[15px]'} onClick={()=>navigate(`/products/collection`)}>Shop Now</p>
                 </button>
 
             </div>

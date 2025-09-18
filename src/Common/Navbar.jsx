@@ -87,7 +87,7 @@ const Navbar = ({cartCount}) => {
 
 
                 {/* Shopping Cart */}
-                <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
+                <button onClick={()=>navigate('/cart')} className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
                     <RiShoppingCartLine className="w-6 h-6 text-gray-700 group-hover:text-blue-600"/>
                     {cartCount > 0 && (<div
                         className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center ">
@@ -155,11 +155,7 @@ const Navbar = ({cartCount}) => {
                             <RiUser2Line className="w-5 h-5 text-gray-600"/>
                             <span className="text-gray-700 font-medium">My Account</span>
                         </a>
-                        <a href="/commerceApp/public"
-                           className="flex items-center gap-3 py-3 px-4 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                            <RiShoppingCartLine className="w-5 h-5 text-gray-600"/>
-                            <span className="text-gray-700 font-medium">Shopping Cart ({cartCount})</span>
-                        </a>
+
                     </div>
                 </div>
             </aside>
