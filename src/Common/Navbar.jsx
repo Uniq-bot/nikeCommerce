@@ -27,10 +27,9 @@ const SearchRes = ({open}) => {
     </div>)
 }
 
-const Navbar = () => {
+const Navbar = ({cartCount}) => {
     const [showCart, setShowCart] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [cartCount] = useState(3);
     const navigate = useNavigate();
     const [searchOpen, setSearchOpen] = useState(false);
 
@@ -92,7 +91,7 @@ const Navbar = () => {
                     <RiShoppingCartLine className="w-6 h-6 text-gray-700 group-hover:text-blue-600"/>
                     {cartCount > 0 && (<div
                         className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center ">
-                        {cartCount > 9 ? '9+' : cartCount}
+                        {cartCount}
                     </div>)}
                 </button>
 

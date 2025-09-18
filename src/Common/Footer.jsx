@@ -1,5 +1,5 @@
 import React from 'react'
-import {RiUserLocationFill} from "@remixicon/react";
+import {RiUserLocationFill , RiFacebookFill} from "@remixicon/react";
 
 const Footer = () => {
     const footerNavigation = [{
@@ -36,7 +36,7 @@ const Footer = () => {
     return (<footer
         className={'footer bg-[#111] text-white flex flex-col justify-between items-center font-[han] w-full gap-3  pt-10 min-h-70'}>
         <div
-            className={'footerMain w-full grid grid-cols-2 md:grid-cols-3 justify-center px-20 lg:grid-cols-6 gap-5 items-center '}>
+            className={'footerMain w-full grid grid-cols-2 md:grid-cols-3 justify-center px-20 lg:grid-cols-5 gap-5 items-center '}>
             <div className={' w-full lg:w-30 md:w-30 '}>
                 <img src={'/logoWhite.svg'} className={'w-full h-full items-center object-contain'} alt={'logo'}/>
 
@@ -49,17 +49,7 @@ const Footer = () => {
                                                   className={'text-[10px] lg:text-[12px] font-mono font-[100]'}>{item.name}</a>))}
                 </div>
             </div>))}
-            <div className={'flex gap-4 justify-center'}>
-                <div className={'bg-white p-2 rounded-full '}>
-                    <img src={'facebook.svg'}  alt={'instagram'}/>
-                </div>
-                <div className={'bg-white p-2 rounded-full '}>
-                    <img src={'instagram.svg'} alt={'instagram'}/>
-                </div>
-                <div className={'bg-white p-2 rounded-full '}>
-                    <img src={'x.svg'} alt={'instagram'}/>
-                </div>
-            </div>
+
 
 
         </div>

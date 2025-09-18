@@ -1,8 +1,10 @@
 import React from 'react'
+import {useNavigate} from "react-router-dom";
 
 const ProductCard = ({index, item}) => {
+    const navigate=useNavigate();
     return (
-        <div key={index} className={'flex flex-col items-center h-70 px-2 lg:h-70    lg:w-full w-full'}>
+        <div key={index} className={'flex flex-col items-center h-70 px-2 lg:h-70    lg:w-full w-full'} onClick={()=>navigate(`/product/${item.id}`, {state:item})}>
             <div className={'w-full h-5/2 relative overflow-hidden '}>
                 <img src={item.image} className={'w-full h-full  absolute hover:scale-110  transition-all   object-cover'} alt="" />
                 <div className={`absolute ${index>0?('bg-sky-200 text-green-800'):('bg-white text-red-700')} lg:px-3 lg:text-[0.8em] text-[0.7em] px-3 top-2 left-2  rounded-full lg:top-2 lg:left-2 lg:py-1 `}>

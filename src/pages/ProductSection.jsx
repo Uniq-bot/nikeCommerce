@@ -2,27 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import ProductCard from "../Card/ProductCard.jsx";
 import FilterSide from "../components/ProductDisplay/FilterSide.jsx";
+import {RiFilterFill} from "@remixicon/react";
+import {RiCloseLine} from "@remixicon/react";
 
 const ProductSection = ({ data }) => {
     const { state } = useLocation(); // e.g. "Men" or "Women"
     const [filterData, setFilterData] = useState([]);
     const [filtersIsOpen, setFiltersIsOpen] = useState(false);
-    console.log(data)
+    // console.log(data)
 
 
     useEffect(() => {
         if (state) {
-            const filtered = data.filter(
-                (item) => item.category.toLowerCase().includes(state.toLowerCase())
-            );
-
-            console.log(filterData)
-            setFilterData(filtered);
+            if (state.toLowerCase() === "collection") {
+                // show everything if it's "Collection"
+                setFilterData(data);
+            } else {
+                // strict match for Men, Women, Kid
+                const filtered = data.filter(
+                    (item) => item.for.toLowerCase() === state.toLowerCase()
+                );
+                setFilterData(filtered);
+            }
         } else {
             setFilterData(data); // fallback: show all
         }
     }, [data, state]);
-
     return (
         <div>
             {filterData.length > 0 ? (
@@ -32,7 +37,7 @@ const ProductSection = ({ data }) => {
                         className=" fixed z-50 bottom-4 right-4 p-3 bg-gray-800 text-white rounded-full shadow-lg"
                         onClick={() => setFiltersIsOpen(!filtersIsOpen)}
                     >
-                        {filtersIsOpen ? "Close" : "Filters"}
+                        {filtersIsOpen ? <RiCloseLine /> : <RiFilterFill />}
                     </button>
 
                     {/* Sidebar */}
@@ -41,7 +46,7 @@ const ProductSection = ({ data }) => {
                     {/* Product Section */}
                     <div className="flex-1 p-4">
                         <h1 className="text-xl font-bold mb-4">
-                            Best Collection for {state}
+                            {state==='Collection'?'Best Collection':`Best Collection for ${state}`}
                         </h1>
                         <div className="collection grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
                             {filterData.map((item) => (
@@ -51,7 +56,7 @@ const ProductSection = ({ data }) => {
                     </div>
                 </div>
             ) : (
-                <p>No products found for "{state}"</p>
+                <p className={'w-full h-screen'}>No products found for "{state}"</p>
             )}
         </div>
     );
