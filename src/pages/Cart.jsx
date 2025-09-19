@@ -1,7 +1,7 @@
 import React from "react";
 import { Minus, Plus, X } from "lucide-react";
 
-const Cart = ({ cartItems = [], setCartItems }) => {
+const Cart = ({ cartItems = [], setCartItems, setOrder }) => {
     // ✅ Remove item from cart
     const handleRemove = (id) => {
         const updated = cartItems.filter((item) => item.id !== id);
@@ -36,6 +36,21 @@ const Cart = ({ cartItems = [], setCartItems }) => {
     );
     const deliveryHandling = cartItems.length > 0 ? 10 : 0; // flat $10 if cart not empty
     const total = subtotal + deliveryHandling;
+// ✅ Place order: push all cart items to orders list and clear cart
+    const handleOrder = () => {
+        if (cartItems.length === 0) return;
+
+        // Append all cart items into orders array (Profile expects an array of product items)
+        setOrder((prev) => ([...(prev || []), ...cartItems]));
+
+        // Persist orders alongside cart clearing (App persists orders to localStorage)
+
+        // Clear cart after order
+        setCartItems([]);
+        localStorage.removeItem("cartItems");
+        // Optional: basic confirmation
+        try { alert("Order placed successfully!"); } catch (_) {}
+    };
 
     return (
         <div className="max-w-6xl min-h-170  mx-auto p-4 bg-white">
@@ -146,7 +161,7 @@ const Cart = ({ cartItems = [], setCartItems }) => {
                             </div>
                         </div>
 
-                        <button className="w-full bg-black text-white py-3 rounded-full mt-6 font-medium hover:bg-gray-800 transition-colors">
+                        <button onClick={()=>handleOrder()} className="w-full bg-black text-white py-3 rounded-full mt-6 font-medium hover:bg-gray-800 transition-colors">
                             Proceed to Checkout
                         </button>
                     </div>

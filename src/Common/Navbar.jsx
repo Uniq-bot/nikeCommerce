@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {RiShoppingCartLine, RiUser2Line, RiMenuLine, RiCloseLine, RiSearchLine} from "@remixicon/react";
 import {useNavigate} from "react-router-dom";
 
@@ -27,11 +27,44 @@ const SearchRes = ({open}) => {
     </div>)
 }
 
-const Navbar = ({cartCount}) => {
+const Navbar = ({ cartCount, isLoggedIn, setLoggedIn, userData, onLogout }) => {
     const [showCart, setShowCart] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const navigate = useNavigate();
     const [searchOpen, setSearchOpen] = useState(false);
+    const [user, setUser] = useState(userData || null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Load user data from localStorage if not passed as prop
+        if (!userData && isLoggedIn) {
+            const savedUser = localStorage.getItem('userData');
+            if (savedUser) {
+                setUser(JSON.parse(savedUser));
+            }
+        } else if (userData) {
+            setUser(userData);
+        }
+    }, [userData, isLoggedIn]);
+
+    const handleAuth = () => {
+        if (isLoggedIn) {
+            navigate('/profile');
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const handleLogout = () => {
+        if (typeof onLogout === 'function') {
+            onLogout();
+        } else {
+            // fallback local cleanup
+            setLoggedIn(false);
+            setUser(null);
+            localStorage.removeItem('userData');
+        }
+        navigate('/');
+    };
 
     return (<div className="flex flex-col sticky z-30 top-0 left-0 right-0 w-full">
 
@@ -96,9 +129,54 @@ const Navbar = ({cartCount}) => {
                 </button>
 
                 {/* User Account */}
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
-                    <RiUser2Line className="w-6 h-6 text-gray-700 group-hover:text-blue-600"/>
-                </button>
+                <div className="relative group">
+                    <button
+                        onClick={handleAuth}
+                        className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
+                        <div className="relative">
+                            <RiUser2Line className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
+                            {isLoggedIn && cartCount > 0 && (
+                                <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
+                                    {cartCount}
+                                </span>
+                            )}
+                        </div>
+                        {isLoggedIn && user && (
+                            <span className="hidden md:inline text-sm font-medium text-gray-700">
+                                Hi, {user.fullName ? user.fullName.split(' ')[0] : 'User'}
+                            </span>
+                        )}
+                    </button>
+                    
+                    {/* Dropdown menu */}
+                    {isLoggedIn && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                            <div className="px-4 py-2 border-b border-gray-100">
+                                <p className="text-sm font-medium text-gray-900">{user?.fullName || 'User'}</p>
+                                <p className="text-xs text-gray-500 truncate">{user?.email || ''}</p>
+                            </div>
+                            <button
+                                onClick={() => navigate('/profile')}
+                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                My Profile
+                            </button>
+                            <button
+                                onClick={() => navigate('/orders')}
+                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                My Orders
+                            </button>
+                            <button
+                                onClick={handleLogout}
+                                className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 border-t border-gray-100 mt-1"
+                            >
+                                Sign Out
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </nav>
 
