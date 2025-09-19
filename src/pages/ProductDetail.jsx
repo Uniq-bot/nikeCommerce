@@ -68,6 +68,10 @@ const ProductDetail = ({ data, fav, setFav, cart, setCart }) => {
                                         src={state.image}
                                         alt={state.name}
                                         className="w-full h-full object-cover"
+                                        fetchpriority="high"
+                                        decoding="async"
+                                        width="1000"
+                                        height="1000"
                                     />
                                 </div>
                             </div>
@@ -83,6 +87,10 @@ const ProductDetail = ({ data, fav, setFav, cart, setCart }) => {
                                             src={state.image}
                                             alt={`Product view ${index}`}
                                             className="w-full h-full object-cover"
+                                            loading="lazy"
+                                            decoding="async"
+                                            width="64"
+                                            height="64"
                                         />
                                     </div>
                                 ))}

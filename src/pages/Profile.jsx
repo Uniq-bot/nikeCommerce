@@ -177,6 +177,10 @@ const ProductItem = ({ product }) => (
                 src={product.image} 
                 alt={product.name} 
                 className="object-cover w-full h-full" 
+                loading="lazy"
+                decoding="async"
+                width="400"
+                height="400"
                 onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = 'https://via.placeholder.com/300x300?text=Product+Image';
@@ -217,6 +221,10 @@ const OrderItem = ({ product }) => (
                         src={product.image} 
                         alt={product.name} 
                         className="h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        width="100"
+                        height="100"
                         onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = 'https://via.placeholder.com/100?text=Product';

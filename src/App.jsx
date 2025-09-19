@@ -8,6 +8,7 @@ import ProductDetail from './pages/ProductDetail.jsx';
 import Cart from './pages/Cart.jsx';
 import Login from './pages/Login.jsx';
 import Profile from './pages/Profile.jsx';
+import SearchResults from './pages/SearchResults.jsx';
 
 // Component to handle conditional rendering of Navbar and Footer
 const Layout = ({ children, cartCount, isLoggedIn, setLoggedIn, userData, onLogout }) => {
@@ -265,6 +266,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home data={products} />} />
                     <Route path="/products/:name" element={<ProductSection data={products} />} />
+                    <Route path="/search" element={<SearchResults data={products} />} />
                     <Route 
                         path="/product/:id" 
                         element={

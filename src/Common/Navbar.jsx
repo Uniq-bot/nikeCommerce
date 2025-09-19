@@ -20,17 +20,22 @@ const NavBarItems = () => {
                 </span>))}
     </>);
 };
-const SearchRes = ({open}) => {
+const SearchRes = ({ open }) => {
+    if (!open) return null;
     return (
-        <div className={`w-full ${!open?('h-0 hidden'):('h-screen flex')}  bg-gray-700 transition-all absolute top-16 left-0 right-0 z-10 opacity-20`}>
-
-    </div>)
-}
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 z-50">
+            <div className="bg-white border border-gray-200 shadow-lg rounded-md px-4 py-2 text-sm text-gray-700 whitespace-nowrap">
+                Feature not available
+            </div>
+        </div>
+    );
+};
 
 const Navbar = ({ cartCount, isLoggedIn, setLoggedIn, userData, onLogout }) => {
     const [showCart, setShowCart] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     const [user, setUser] = useState(userData || null);
     const navigate = useNavigate();
 
@@ -102,6 +107,17 @@ const Navbar = ({ cartCount, isLoggedIn, setLoggedIn, userData, onLogout }) => {
             <div className="hidden lg:flex items-center bg-gray-100 rounded-full px-4 py-2 w-80">
                 <RiSearchLine className="w-5 h-5 text-gray-400 mr-3"/>
                 <input
+                    value={searchQuery}
+                    onChange={(e)=>setSearchQuery(e.target.value)}
+                    onKeyDown={(e)=>{
+                        if(e.key==='Enter'){
+                            const q = searchQuery.trim();
+                            if(q){
+                                navigate(`/search?q=${encodeURIComponent(q)}`);
+                                setSearchOpen(false);
+                            }
+                        }
+                    }}
                     onFocus={() => setSearchOpen(!searchOpen)}
                     onBlur={() => setSearchOpen(false)}// delay so clicks work
 
@@ -216,6 +232,17 @@ const Navbar = ({ cartCount, isLoggedIn, setLoggedIn, userData, onLogout }) => {
                         <RiSearchLine className="w-5 h-5 text-gray-400 mr-3"/>
                         <input
                             type="text"
+                            value={searchQuery}
+                            onChange={(e)=>setSearchQuery(e.target.value)}
+                            onKeyDown={(e)=>{
+                                if(e.key==='Enter'){
+                                    const q = searchQuery.trim();
+                                    if(q){
+                                        navigate(`/search?q=${encodeURIComponent(q)}`);
+                                        setIsOpen(false);
+                                    }
+                                }
+                            }}
                             placeholder="Search products..."
                             className="bg-transparent flex-1 outline-none text-gray-700 placeholder-gray-400"
                         />

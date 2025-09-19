@@ -6,7 +6,7 @@ const Trending = () => {
         <div className={'trending flex flex-col w-full h-100 md:h-120 lg:h-[80vh] mt-5 lg:px-10'}>
             <h1 className={'text-[10px] py-1  font-bold font-[han] lg:text-[1em] pb-5'}>Trending Now</h1>
             <div className="trending-grid h-full lg:px-15 px-2 w-full grid grid-cols-2  gap-4" >
-                <div className={'col-span-2 bg-[url("./public/trending-1.png")] relative bg-cover bg-center bg-  h-full w-full bg-red-400'}>
+                <div className={'col-span-2 bg-[url("/trending-1.png")] relative bg-cover bg-center bg-  h-full w-full bg-red-400'}>
                     <div className={'overlay absolute w-full h-full inset-0 bg-gradient-to-r from-black to-transparent '} />
                     <div className={'textArea relative px-5 text-white flex flex-col top-10 items-start h-full w-full '}>
                         <h1 className={'font-[han] lg:text-[9vh] text-[30px] leading-none uppercase font-[900]'}>React Presto</h1>
@@ -17,7 +17,7 @@ const Trending = () => {
 
                     </div>
                 </div>
-                <div className={'bg-red-300 bg-[url("./public/trending-2.png")] bg-cover relative bg-center'}>
+                <div className={'bg-red-300 bg-[url("/trending-2.png")] bg-cover relative bg-center'}>
                     <div className={'overlay absolute w-full h-full inset-0 bg-gradient-to-t from-black to-transparent '} />
                         <div className={'absolute z-10 text-white bottom-2 left-3 text-[13px] lg:text-[20px] md:text-[16px] font-[han]'}>
                             <p>
@@ -25,7 +25,7 @@ const Trending = () => {
                             </p>
                         </div>
                 </div>
-                <div className={'bg-red-500 bg-[url("./public/trending-3.png")] bg-cover relative bg-center'}>
+                <div className={'bg-red-500 bg-[url("/trending-3.png")] bg-cover relative bg-center'}>
                     <div className={'overlay absolute w-full h-full inset-0 bg-gradient-to-t from-black to-transparent '} />
                     <div className={'absolute z-10 text-white bottom-2 left-3 text-[13px] lg:text-[20px] md:text-[16px] font-[han]'}>
                         <p>

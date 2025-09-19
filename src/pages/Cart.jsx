@@ -77,6 +77,10 @@ const Cart = ({ cartItems = [], setCartItems, setOrder }) => {
                                                 src={item.image}
                                                 alt={item.name}
                                                 className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                decoding="async"
+                                                width="80"
+                                                height="80"
                                                 onError={(e) => {
                                                     e.target.src = "/api/placeholder/80/80";
                                                 }}

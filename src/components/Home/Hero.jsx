@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 const Hero = () => {
     const navigate=useNavigate();
     return (
-        <section className="hero lg:px-15 px-5 font-[han]  md:h-100  h-50  lg:min-h-150 flex items-center bg-[url('./public/hero-bg.png')] bg-cover bg-no-repeat   relative overflow-hidden">
+        <section className="hero lg:px-15 px-5 font-[han]  md:h-100  h-50  lg:min-h-150 flex items-center bg-[url('/hero-bg.png')] bg-cover bg-no-repeat   relative overflow-hidden">
                 <div className="h-full w-2/3  flex flex-col justify-center  bg-cover">
                     <p className={'text-[8px] pl-2 md:text-[20px] lg:text-[20px] text-red-400 font-[500]'}>Bold & Sporty</p>
                     <h1 className={'text-[1.5em] md:text-[3em] lg:text-[7em] lg:font-[800] text-[#111] font-bold leading-none [word-spacing:-5px] '}>
@@ -18,7 +18,7 @@ const Hero = () => {
                 </div>
             <div className={'w-1/2 lg:-rotate-10   h-full flex items-center'
             }>
-                <img src="/hero-shoe.png" alt="shoe" />
+                <img src="/hero-shoe.png" alt="shoe" fetchpriority="high" decoding="async" width="800" height="600" />
             </div>
         </section>
     )

@@ -3,9 +3,9 @@ import {useNavigate} from "react-router-dom";
 const BestCard = ({item, index}) => {
     const navigate = useNavigate();
     return (
-        <div key={index} className={'  flex flex-col items-center lg:w-1/4 w-1/2'} onClick={()=>navigate(`/product/${item.id}`)}>
+        <div key={index} className={'  flex flex-col items-center lg:w-1/4 w-1/2'} onClick={()=>navigate(`/product/${item.id}`, {state:item})}>
             <div className={'w-full h-[90.5vh] lg:h-[300vh] md:h-[150vh] relative overflow-hidden '}>
-                <img src={item.image} className={'w-full h-full  absolute hover:scale-110 transition-all    object-cover'} alt="" />
+                <img src={item.image} className={'w-full h-full  absolute hover:scale-110 transition-all    object-cover'} alt={item.name || 'product'} loading="lazy" decoding="async" width="600" height="800" />
                 <div className={`absolute ${index>0?('bg-sky-200 text-green-800'):('bg-white text-red-700')} lg:px-5 lg:text-[0.9em] text-[0.7em] px-3 top-2 left-2  rounded-full lg:top-3 lg:left-3 lg:py-1 `}>
                     {item.label}
                 </div>

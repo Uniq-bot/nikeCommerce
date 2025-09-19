@@ -18,7 +18,7 @@ const SubHero = () => {
             </div>
             <div className={'w-1/2 lg:-rotate-10   h-full flex items-center'
             }>
-                <img src="/feature.png" alt="shoe" />
+                <img src="/feature.png" alt="shoe" loading="lazy" decoding="async" width="800" height="600" />
             </div>
         </section>
     )
